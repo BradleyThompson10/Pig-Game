@@ -11,15 +11,34 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
-//starting conditions
-score0EL.textContent = 0;
-score1EL.textContent = 0;
-diceEL.classList.add('hidden');
+let playing, scores, currentScore, activePlayer;
 
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+// Starting conditions
+const init = function () {
+  //Reset game state
+  playing = true;
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+
+  // removing CSS classes and resetting html values
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  score0EL.textContent = 0;
+  score1EL.textContent = 0;
+  diceEL.classList.add('hidden');
+  player0EL.classList.add('player--active');
+  player1EL.classList.remove('player--active');
+  player0EL.classList.remove('player--winner');
+  player1EL.classList.remove('player--winner');
+
+  //resetting JS values
+
+  console.table(scores);
+  console.log(currentScore);
+};
+
+init();
 
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -81,27 +100,4 @@ btnHold.addEventListener('click', function () {
 });
 
 // New game btn Fuction
-btnNew.addEventListener('click', function () {
-  //Reset game state
-  playing = true;
-
-  // removing CSS classes and resetting html values
-  document
-    .querySelector(`.player--${activePlayer}`)
-    .classList.remove('player--winner');
-  current0El.textContent = 0;
-  current1El.textContent = 0;
-  score0EL.textContent = 0;
-  score1EL.textContent = 0;
-  diceEL.classList.add('hidden');
-  player0EL.classList.add('player--active');
-  player1EL.classList.remove('player--active');
-
-  //resetting JS values
-  scores[0] = 0;
-  scores[1] = 0;
-  currentScore = 0;
-  console.table(scores);
-  console.log(currentScore);
-  activePlayer = 0;
-});
+btnNew.addEventListener('click', init);
