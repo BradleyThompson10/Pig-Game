@@ -63,7 +63,7 @@ btnHold.addEventListener('click', function () {
       scores[activePlayer];
     //2. Check if score is >= 100
     //If the score is >= 100 finish game
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       //finish the game
       playing = false;
       document
@@ -89,10 +89,10 @@ btnNew.addEventListener('click', function () {
   document
     .querySelector(`.player--${activePlayer}`)
     .classList.remove('player--winner');
-  document.getElementById(`current--0`).textContent = 0;
-  document.getElementById(`current--1`).textContent = 0;
-  document.getElementById(`score--0`).textContent = 0;
-  document.getElementById(`score--1`).textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  score0EL.textContent = 0;
+  score1EL.textContent = 0;
   diceEL.classList.add('hidden');
   player0EL.classList.add('player--active');
   player1EL.classList.remove('player--active');
